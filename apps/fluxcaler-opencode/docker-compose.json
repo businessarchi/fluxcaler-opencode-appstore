@@ -1,0 +1,29 @@
+{
+  "$schema": "https://schemas.runtipi.io/v2/dynamic-compose.json",
+  "schemaVersion": 2,
+  "services": [
+    {
+      "name": "fluxcaler-opencode",
+      "image": "ghcr.io/businessarchi/fluxcaler-opencode:0.1.0",
+      "isMain": true,
+      "internalPort": 4096,
+      "environment": [
+        { "key": "OPENCODE_DEFAULT_MODEL", "value": "${OPENCODE_DEFAULT_MODEL}" },
+        { "key": "DARIO_PORT", "value": "3456" },
+        { "key": "OPENCODE_PORT", "value": "4096" }
+      ],
+      "volumes": [
+        { "hostPath": "${APP_DATA_DIR}/data/dario", "containerPath": "/root/.dario" },
+        { "hostPath": "${APP_DATA_DIR}/data/opencode", "containerPath": "/root/.config/opencode" },
+        { "hostPath": "${APP_DATA_DIR}/data/opencode-state", "containerPath": "/root/.local/share/opencode" }
+      ],
+      "healthCheck": {
+        "test": "wget --no-verbose --tries=1 --spider http://localhost:4096/ || exit 1",
+        "interval": "30s",
+        "timeout": "10s",
+        "retries": 3,
+        "startPeriod": "30s"
+      }
+    }
+  ]
+}
