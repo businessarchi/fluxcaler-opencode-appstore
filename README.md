@@ -4,6 +4,15 @@ App-store Runtipi custom qui expose une app : **`fluxcaler-opencode`** — OpenC
 
 Conçu pour s'intégrer à la stack Fluxcaler (cf [`pontoizeau-lab/fluxcaler-appstore`](https://github.com/pontoizeau-lab/fluxcaler-appstore)). Ce repo est temporaire : à terme, l'app sera fusionnée dans l'app-store de David.
 
+## Prérequis — image Docker publique
+
+L'image `ghcr.io/businessarchi/fluxcaler-opencode:<version>` est buildée par GitHub Actions et pushée sur GitHub Container Registry. **Par défaut elle est privée** — il faut la passer en `public` la première fois pour que Runtipi puisse la pull sans token :
+
+1. https://github.com/users/businessarchi/packages/container/fluxcaler-opencode/settings
+2. Section **Danger Zone** → **Change visibility** → `Public` → confirmer
+
+(à faire 1 fois après le premier build réussi)
+
 ## Ajouter ce store à ton instance Runtipi
 
 1. Va dans **Runtipi UI → Settings → App Stores → Add App Store**
