@@ -1,0 +1,28 @@
+{
+  "$schema": "../app-info-schema.json",
+  "id": "fluxcaler-opencode",
+  "name": "OpenCode + dario",
+  "available": true,
+  "port": 4096,
+  "exposable": false,
+  "version": "0.1.0",
+  "tipi_version": 1,
+  "min_tipi_version": "4.5.0",
+  "categories": ["ai", "automation", "development"],
+  "short_desc": "OpenCode HTTP API backed by Claude Pro/Max via dario proxy",
+  "description": "Conteneur tout-en-un qui expose l'API HTTP d'OpenCode (port 4096) en utilisant l'abonnement Claude Pro/Max via le proxy local dario. Pensé pour être appelé depuis n8n ou tout autre orchestrateur sur le même réseau Docker. Premier lancement : faire `docker exec -it fluxcaler-opencode dario login --manual` pour autoriser le compte Claude.",
+  "author": "businessarchi",
+  "source": "https://github.com/businessarchi/fluxcaler-opencode-appstore",
+  "website": "https://github.com/businessarchi/fluxcaler-opencode-appstore",
+  "supported_architectures": ["amd64", "arm64"],
+  "form_fields": [
+    {
+      "type": "text",
+      "label": "Modèle Claude par défaut",
+      "env_variable": "OPENCODE_DEFAULT_MODEL",
+      "default": "anthropic/claude-sonnet-4-6",
+      "required": false,
+      "hint": "Modèle utilisé si le client n'en spécifie pas un dans la requête. Le client peut toujours surcharger via le champ `model` du body."
+    }
+  ]
+}
